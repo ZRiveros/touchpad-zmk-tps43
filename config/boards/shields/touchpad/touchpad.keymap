@@ -1,6 +1,6 @@
 /*
- * Minimal keymap för en touchpad-only enhet.
- * Ingen riktig tangent finns — mock kscan med en dummy-binding.
+ * Minimal keymap for a touchpad-only device.
+ * No real keys exist — mock kscan with a dummy binding.
  */
 
 #include <behaviors.dtsi>
