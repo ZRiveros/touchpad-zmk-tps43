@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 /*
  * Minimal keymap for a touchpad-only device.
  * No real keys exist — mock kscan with a dummy binding.
  */
 
+=======
+>>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
@@ -11,7 +14,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            bindings = <&none>;
+            bindings = < &kp SPACE >;
         };
     };
 };
