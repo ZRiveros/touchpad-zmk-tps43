@@ -1,25 +1,12 @@
 /*
-<<<<<<< HEAD
- * Standalone BLE Touchpad — HolyKeebs TPS43 + NRF52840 SuperMini
- *
- * Wiring:
- *   TPS43 adapter PCB    NRF52840 SuperMini (Pro Micro pinout)
- *   ─────────────────    ─────────────────────────────────────
- *   VCC  ─────────────►  VCC  (3.3V)
- *   GND  ─────────────►  GND
- *   SDA  ─────────────►  D2   (P0.17)
- *   SCL  ─────────────►  D3   (P0.20)
- *   RDY  ─────────────►  D4   (P0.22)  ← Required (interrupt)
- *
- * The AYM1607 driver is interrupt-driven — RDY pin is mandatory.
-=======
  * Standalone BLE Touchpad — TPS43 + NRF52840 SuperMini
+ *
  * Wiring:
  *   VCC → 3.3V
  *   GND → GND
  *   SDA → D2 (P0.17)
  *   SCL → D3 (P0.20)
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
+ *   RDY → D4 (P0.22)  ← Required (interrupt-driven)
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
@@ -30,12 +17,7 @@
         zmk,matrix-transform = &default_transform;
     };
 
-<<<<<<< HEAD
-    /* Dummy kscan – no key matrix needed */
-    mock_kscan: kscan {
-        compatible = "zmk,kscan-mock";
-=======
-    /* Dummy kscan (krävs av ZMK) */
+    /* Dummy kscan (required by ZMK) */
     kscan_direct: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
         wakeup-source;
@@ -44,25 +26,19 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
         columns = <1>;
         rows = <1>;
         map = < RC(0,0) >;
     };
 
-<<<<<<< HEAD
-    /* Input listener that connects touchpad data to ZMK's HID mouse */
-    touchpad_listener: touchpad_listener {
-=======
-    /* Koppla touchpad → ZMK input */
+    /* Connect touchpad → ZMK input */
     tps43_input: tps43_input {
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
         compatible = "zmk,input-listener";
         device = <&tps43>;
     };
 };
 
-/* 🔥 KRITISK DEL — definierar rätt pins */
+/* Pin control for I2C0 */
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
@@ -80,7 +56,7 @@
     };
 };
 
-/* 🔥 RÄTT I2C (inte pro_micro_i2c!) */
+/* I2C bus — using i2c0 directly with pinctrl */
 &i2c0 {
     status = "okay";
     clock-frequency = <I2C_BITRATE_FAST>;
@@ -92,16 +68,13 @@
     tps43: iqs5xx@74 {
         compatible = "azoteq,iqs5xx";
         reg = <0x74>;
-<<<<<<< HEAD
+        status = "okay";
 
         /* RDY pin — required for interrupt-driven operation */
         rdy-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
 
         /* RESET — optional, uncomment if wired to D5 */
         /* reset-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>; */
-=======
-        status = "okay";
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
 
         /* Gestures */
         one-finger-tap;
@@ -109,30 +82,13 @@
         press-and-hold;
         press-and-hold-time = <250>;
 
-<<<<<<< HEAD
         /* Scrolling */
-=======
-        /* Scroll */
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
         scroll;
         natural-scroll-y;
         natural-scroll-x;
 
-<<<<<<< HEAD
-        /* Fine-tuning */
-        bottom-beta = <5>;
-        stationary-threshold = <5>;
-
-        /*
-         * Axis configuration — adjust based on orientation:
-         *   switch-xy;    ← swap X/Y if touchpad is rotated 90°
-         *   flip-x;       ← invert X
-         *   flip-y;       ← invert Y
-         */
-=======
         /* Tuning */
         bottom-beta = <5>;
         stationary-threshold = <5>;
->>>>>>> 748be5572fd042cc32cf139aa5567ca22473289a
     };
 };
