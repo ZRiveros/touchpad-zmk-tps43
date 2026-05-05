@@ -89,7 +89,6 @@
 
         switch-xy;
         flip-x;
-        flip-y;
 
         /* Tuning */
         bottom-beta = <5>;
