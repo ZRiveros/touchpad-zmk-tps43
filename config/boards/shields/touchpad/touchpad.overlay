@@ -87,6 +87,9 @@
         natural-scroll-y;
         natural-scroll-x;
 
+        /* Axis swap — touchpad is rotated 90° in its mount */
+        switch-xy;
+
         /* Tuning */
         bottom-beta = <5>;
         stationary-threshold = <5>;
