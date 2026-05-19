@@ -73,8 +73,8 @@
         /* RDY pin — required for interrupt-driven operation */
         rdy-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
 
-        /* RESET — optional, uncomment if wired to D5 */
-        /* reset-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>; */
+        /* RESET — wired to D5 (P0.24) */
+        reset-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
 
         /* Gestures */
         one-finger-tap;
