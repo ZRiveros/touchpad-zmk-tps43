@@ -65,9 +65,9 @@
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    tps43: iqs5xx@74 {
+    tps43: iqs5xx@56 {
         compatible = "azoteq,iqs5xx";
-        reg = <0x74>;
+        reg = <0x56>;
         status = "okay";
 
         /* RDY pin — required for interrupt-driven operation */
