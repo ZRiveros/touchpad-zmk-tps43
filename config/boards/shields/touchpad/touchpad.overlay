@@ -86,7 +86,6 @@
         scroll;
         natural-scroll-x;
 
-        flip-x;
         flip-y;
         switch-xy;
 
